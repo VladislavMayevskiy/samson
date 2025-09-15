@@ -1,144 +1,143 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
-  Text,
-  Heading,
-  Image,
-  Container,
-  Button,
   Flex,
-  IconButton,  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton
+  Image,
+  Text,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  IconButton,
+  Badge,
+  Menu,
+  MenuButton,
+  MenuList,
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
+import Search from "../catalog/filter/Search";
 import Filtration from "../catalog/filter/Filtration";
-import Logo from "../logo.png"
+import Logo from "../../logo.png";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { FiFilter } from "react-icons/fi"; 
-import { useLocation } from "react-router-dom";
-const Header = ({sort,setSort,selected,setSelected}) => {
+import { HamburgerIcon } from "@chakra-ui/icons";
+import { useNavigate, useLocation } from "react-router-dom";
+import { BiSortAlt2 } from "react-icons/bi";
+
+const Header = ({ sort, setSort, selected, setSelected, query, setQuery }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <Box
-      bgColor="white"
-      width={1250}
-      ml={3}
-      borderRadius={15}
-      mt={3}
-      height={16}
-      zIndex={100}
+      as="header"
       position="fixed"
-
+      top={0}
+      left={0}
+      width="100%"
+      height="80px"
+      bg="white"
+      boxShadow="sm"
+      zIndex={1000}
+      px={6}
     >
-      <Image
+      <Flex
         align="center"
-        src={Logo}
-        alt="Logo"
-        boxSize={16}
-        width={32}
-        ml={4}
-      />
-      <Container mt={-10}>
-        <Button
-          textColor="gray.800"
-          mt={{ base: 0, md: -3 }}
-          ml={{ base: 0, md: -180 }}
-          fontWeight="semibold"
-          variant="ghost"
-          onClick={() => navigate("/")}
-        >
-          Головна
-        </Button>
-        {location.pathname !== "/catalog" && (
-        <Button
-          textColor="gray.800"
-          mt={{ base: 0, md: -3 }}
-          fontWeight="semibold"
-          variant="ghost"
-          onClick={() => navigate("/catalog")} 
-        >
-          Каталог
-        </Button>
-  )}
-        <Button
-          textColor="gray.800"
-          mt={{ base: 0, md: -3 }}
-          fontWeight="semibold"
-          variant="ghost"
-          onClick={() => navigate("/about")}
-        >
-          Про нас
-        </Button>
-        <Button
-          textColor="gray.800"
-          mt={{ base: 0, md: -3 }}
-          fontWeight="semibold"
-          variant="ghost"
-          onClick={() => navigate("/contacts")}
-        >
-          Контакти
-        </Button>
-      </Container>
-      <Button
-        textColor="gray.800"
-        ml={{ base: 0, md: 1120 }}
-        mt={{ base: 0, md: -65 }}
-        bgColor="gold"
-        borderRadius={10}
-        onClick={() => navigate("/contacts")}
+        justify="space-between"
+        height="100%"
+        maxW="1200px"
+        mx="auto"
       >
-        Зв'язатися
-      </Button>
-      <Flex ml={{ base: 0, md: 1000 }} mt={{ base: 0, md: -16 }}>
-      {location.pathname === "/catalog" && (
-      <IconButton
-      icon={<FiFilter size={21} />}
-      color="black"
-      mt={{base:0,md:1}}
-      ml={{base:0,md:-5}}
-      onClick={onOpen}
-      />)}
-        <IconButton
-          mt={{ base: 0, md: 1 }}
-          icon={<FaSearch />}
-          aria-label="Пошук"
-          fontSize="20px"
-          mr={2}
-          color="black"
-          variant="ghost"
-          ml={{base:0,md:2}}
-        />
-        <IconButton
-          mt={{ base: 0, md: 1 }}
-          icon={<FaShoppingCart />}
-          aria-label="Кошик"
-          fontSize="20px"
-          color="black"
-          variant="ghost"
-        />
-         <Drawer isOpen={isOpen} placement="right" onClose={onClose} size="sm">
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Фільтри</DrawerHeader>
-          <DrawerBody>
-          <Filtration
-  sort={sort}
-  setSort={setSort}
-  selected={selected}
-  setSelected={setSelected}
-/>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+        <Flex align="center" gap={3} cursor="pointer" onClick={() => navigate("/")}>
+          <Image src={Logo} alt="Logo" boxSize="48px" borderRadius="xl" />
+          <Box>
+            <Text fontWeight="bold" fontSize="xl" color="green.700">
+              FitStore
+            </Text>
+            <Text fontSize="sm" color="gray.500">
+              Професійне обладнання
+            </Text>
+          </Box>
+        </Flex>
+
+
+        <Box flex={1} mx={8} display={{ base: "none", md: "block" }} ml={150} mt={4} >
+  <Search value={query} onChange={setQuery} />
+</Box>
+
+
+
+        <Flex align="center" gap={4}>
+          <IconButton
+            display={{ base: "flex", md: "none" }}
+            aria-label="Search"
+            icon={<FaSearch />}
+            onClick={() => setShowSearch((prev) => !prev)}
+            color="black"
+          />
+
+          {showSearch && (
+            <Input
+              placeholder="Пошук…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              size="sm"
+              bg="white"
+              borderRadius="md"
+            />
+          )}
+
+          <Box position="relative">
+            <IconButton
+              aria-label="Cart"
+              icon={<FaShoppingCart />}
+              fontSize="20px"
+              color="black"
+            />
+            <Badge
+              position="absolute"
+              top="-1"
+              right="-1"
+              borderRadius="full"
+              bg="green.400"
+              color="white"
+              fontSize="0.7em"
+              px={2}
+            >
+              3
+            </Badge>
+          </Box>
+
+          {location.pathname === "/catalog" && (
+            <Menu isLazy placement="bottom-end">
+              {({ onClose }) => (
+                <>
+                  <MenuButton
+                    as={IconButton}
+                    aria-label="Sort"
+                    icon={<BiSortAlt2 />}
+                    fontSize="22px"
+                    color="black"
+                  />
+                  <MenuList bgColor="black" borderRadius={10} p={2}>
+                    <Filtration
+                      sort={sort}
+                      setSort={setSort}
+                      selected={selected}
+                      setSelected={setSelected}
+                      onDone={onClose}
+                    />
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+          )}
+
+          <IconButton
+            aria-label="Menu"
+            icon={<HamburgerIcon />}
+            fontSize="22px"
+            color="black"
+          />
+        </Flex>
       </Flex>
     </Box>
   );

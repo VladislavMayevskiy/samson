@@ -8,7 +8,7 @@ const Goods = [
       category: "Штанги",
       rating: "4.5",
       comment: "456 відгуків",
-      price: "9,999 $",
+      price: "₴9,999",
       button: "Додати до кошика",
       image: Grif,
       createdAt: new Date().toISOString()
@@ -20,7 +20,7 @@ const Goods = [
       category: "Гантелі",
       rating: "4.7",
       comment: "321 відгук",
-      price: "4,599 $",
+      price: "₴4,599",
       button: "Додати до кошика",
       image:Catalog2,
       createdAt: new Date().toISOString()
@@ -32,7 +32,7 @@ const Goods = [
       category: "Обладнання",
       rating: "4.8",
       comment: "198 відгуків",
-      price: "7,199 $",
+      price: "₴7,199",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },
@@ -43,7 +43,7 @@ const Goods = [
       category: "Обладнання",
       rating: "4.6",
       comment: "287 відгуків",
-      price: "5,499 $",
+      price: "₴5,499",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },
@@ -54,7 +54,7 @@ const Goods = [
       category: "Млинці",
       rating: "4.9",
       comment: "612 відгуків",
-      price: "1,299 $",
+      price: "₴1,299",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },
@@ -65,7 +65,7 @@ const Goods = [
       category: "Аксесуари",
       rating: "4.3",
       comment: "174 відгуки",
-      price: "799 $",
+      price: "₴799",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },
@@ -76,7 +76,7 @@ const Goods = [
       category: "Тренажери",
       rating: "4.4",
       comment: "92 відгуки",
-      price: "3,999 $",
+      price: "₴3,999",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },
@@ -87,7 +87,7 @@ const Goods = [
       category: "Аксесуари",
       rating: "4.6",
       comment: "238 відгуків",
-      price: "599 $",
+      price: "₴599",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },
@@ -98,7 +98,18 @@ const Goods = [
       category: "Обладнання",
       rating: "4.8",
       comment: "387 відгуків",
-      price: "1,899 $",
+      price: "₴1,899",
+      button: "Додати до кошика",
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: 10,
+      title: "Турнік настінний",
+      description: "Максимальне навантаження 150 кг",
+      category: "Обладнання",
+      rating: "4.8",
+      comment: "387 відгуків",
+      price: "₴200",
       button: "Додати до кошика",
       createdAt: new Date().toISOString()
     },

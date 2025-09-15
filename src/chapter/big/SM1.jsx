@@ -1,177 +1,138 @@
-import React from "react";
 import {
   Box,
-  Text,
-  Flex,
-  Button,
-  Icon,
-  HStack,
-  SimpleGrid,
+  Container,
   Heading,
-} from "@chakra-ui/react";
-import {
-  FiPlay,
-  FiMessageCircle,
-  FiZap,
-  FiShield,
-  FiUsers,
-} from "react-icons/fi";
-import { TbAward } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
-
-
-const features = [
-  { icon: FiZap,  description: "Швидка доставка" ,info:"1-2 дні по цілій Україні"},
-  { icon: FiShield, description: "Гарантія 2 роки",info: "На всі тренажери "},
-  { icon: FiUsers,  description: "1000+ клієнтів" ,info:"Нашій продукції"},
-  { icon: TbAward,  description: "5 років досвіду",info: "На ринку"},
-];
-
-const SM1 = () => {
-  const navigate = useNavigate()
+  Text,
+  Button,
+  Image,
+  Flex,
+  HStack,
+  VStack,
+  Avatar,
+  AvatarGroup,
+  Icon,
+} from "@chakra-ui/react"
+import { useNavigate } from "react-router-dom"
+import Logo from "../../logo.png"
+import Test from "../../ImagePhone.svg"
+export default function HeroSection() {
+const navigate = useNavigate() 
   return (
-    <Box mt={100}>
-      <Text
-        textColor="black"
-        mt={-30}
-        ml={0}
-        fontSize={90}
-        fontWeight={800}
-        textShadow="4px 4px 8px rgba(0, 0, 0, 0.5)"
-      >
-        SAMSON
-      </Text>
-      <Text
-        fontSize={30}
-        fontWeight={550}
-        ml={10}
-        textColor="yellow.500"
-        textShadow="2px 2px 2px rgba(0, 0, 0, 0.5)"
-      >
-        SPORTS EQUIPMENT
-      </Text>
-      <Box
-        ml={-6}
-        bgColor="yellow.100"
-        width={450}
-        height={10}
-        borderRadius={20}
-        mt={3}
-      >
-        <Text
-          ml={{ base: 0, md: 6 }}
-          textColor="brown"
-          fontSize={16}
-          fontWeight={500}
-        >
-          🏆Професійне спортивне обладнання №1 в Україні
-        </Text>
-      </Box>
+    <Box as="section" position="relative" minH="100vh" bgColor="#E8E9ED" color="black" overflow="hidden">
+      <Container maxW="container.xl" py={4}>
+        <Flex justify="space-between" align="center">
+          <HStack spacing={2}>
+<Image
+src={Logo}
+alt="Logo"
+   boxSize={16} 
+   width={28} 
+   />
+          </HStack>
 
-      <Box ml={{ base: 0, md: -270 }} mt={{ base: 0, md: 180 }}>
-        <Text
-          ml={{ base: 0, md: 5 }}
-          textColor="black"
-          fontSize={80}
-          fontWeight="bold"
-          textShadow="4px 4px 8px rgba(0, 0, 0, 0.5)"
-        >
-          Твоя сила -
-        </Text>
-      </Box>
+          <HStack spacing={8} display={{ base: "none", md: "flex" }}>
+            <Button textColor="black" onClick={() => navigate("/")}>
+              Home
+              </Button>
+              <Button textColor="black" onClick={() => navigate("/catalog")}>
+              Product
+              </Button>
+          </HStack>
 
-      <Box ml={-290} mt={-120}>
-        <Text
-          ml={{ base: 0, md: 500 }}
-          fontSize={80}
-          fontWeight="bold"
-          bgClip="text"
-          bgGradient="linear(to-r,gold,yellow.400)"
-          textShadow="10px 5px 20px rgba(242, 255, 0, 0.5)"
-        >
-          наша місія
-        </Text>
-      </Box>
+          <Button bg="green.400" color="white" px={6} _hover={{ bg: "green.600" }}>
+            Download app
+          </Button>
+        </Flex>
+      </Container>
 
-      <Flex ml={{ base: 0, md: -160 }}>
-        <Text
-          textColor="gray.700"
-          fontSize={24}
-          fontWeight="medium"
-          width={{ base: 0, md: 700 }}
-          textAlign="center"
-        >
-          Перетвори свої мрії на реальність з найкращим спортивним обладнанням.
-          Якість, надійність та інновації для досягнення твоїх цілей
-        </Text>
-      </Flex>
+      <Container maxW="container.xl" mt={8}>
+        <Flex justify="center" mb={12}>
+          <HStack spacing={3}>
+            <Avatar size="md" src="/professional-man.png" />
+            <VStack align="start" spacing={0}>
+              <Text fontSize="sm" fontWeight="bold" color="gray.800">
+               Mayevskiy Vladislav
+              </Text>
+              <Text fontSize="xs" color="gray.600">
+                Full Stack
+              </Text>
+            </VStack>
+          </HStack>
+        </Flex>
+      </Container>
 
-      <HStack mt={{ base: 0, md: 10 }} ml={{ base: 0, md: -32 }} spacing={10}>
-        <Button
-          leftIcon={<Icon as={FiPlay} />}
-          bgGradient="linear(to-r, yellow.400, orange.500)"
-          color="black"
-          _hover={{ bgGradient: "linear(to-r, yellow.500, orange.600)" }}
-          borderRadius="full"
-          fontWeight="bold"
-          px={6}
-          py={5}
-          boxShadow="md"
-          width={300}
-          onClick={() => navigate("/catalog")}
-        >
-          Дослідити каталог
-        </Button>
-        <Button
-          leftIcon={<Icon as={FiMessageCircle} />}
-          variant="outline"
-          borderColor="gray.300"
-          color="gray.800"
-          borderRadius="full"
-          fontWeight="bold"
-          px={6}
-          py={5}
-          _hover={{ bg: "gray.50" }}
-        >
-          Безкоштовна консультація
-        </Button>
-      </HStack>
-
-      <SimpleGrid
-        columns={{ base: 1, sm: 2, md: 4 }}
-        spacing={8}
-        mt={20}
-        px={{ base: 4, md: 32 }}
-        ml={{base:0,md:-410}}
-      >
-        {features.map((feature, index) => (
-          <Box
-            key={index}
-            borderWidth="1px"
-            borderRadius="xl"
-            p={6}
-            textAlign="center"
-            boxShadow="md"
-            bg="white"
-            _hover={{
-              boxShadow: "xl",
-              transform: "scale(1.05)",
-              transition: "0.3s ease",
-            }}
-          >
-            <Icon as={feature.icon} boxSize={10} color="yellow.400" mb={4} />
-          
-            <Heading textColor="black" fontSize={22}>
-              {feature.description}
-              </Heading>
-            <Text textColor="gray.700">
-                {feature.info}
+      <Container maxW="container.lg" textAlign="center" position="relative" zIndex={3}>
+        <Flex justify="center" mb={6}>
+          <HStack spacing={2}>
+            <AvatarGroup size="sm" max={3}>
+              <Avatar src="/diverse-person.png" />
+              <Avatar src="/diverse-group-two.png" />
+              <Avatar src="/diverse-group-outdoors.png" />
+            </AvatarGroup>
+            <Text color="green.400" fontSize="sm" fontWeight="bold">
+              10k+ users
             </Text>
-          </Box>
-        ))}
-      </SimpleGrid>
-    </Box>
-  );
-};
+          </HStack>
+        </Flex>
 
-export default SM1;
+        <Heading fontSize={{ base: "4xl", md: "6xl" }} mb={6} lineHeight="1.1">
+          Try your{" "}
+          <Box as="span" color="green.400">
+            power
+          </Box>{" "}
+          on our fitness simulator
+        </Heading>
+
+        <Text fontSize="lg" mb={8} color="gray.600" maxW="2xl" mx="auto">
+         Our fitness simulator been the <Box textColor="green.400">greatest</Box> in the world.Because we have the best team in the world :{")"}
+        </Text>
+
+      
+      </Container>
+
+
+        <Flex justify="center" position="relative" zIndex={4} >
+          <Box position="relative">
+            <Image src={Test} alt="Finpay App" maxH="600px" objectFit="contain" />
+          </Box>
+        </Flex>
+
+ {/*Blur*/}       <Box
+  position="absolute"
+  bottom="0"
+  left="0"
+  w="100%"
+  h="300px"
+  bgGradient="linear(to-t, white, rgba(255,255,255,0))"
+  filter="blur(1px)"
+  zIndex={5}
+/>
+
+<Box position="absolute" bottom="0" left="0" w="100%" h="320px" pointerEvents="none" zIndex={1}>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1440 320"
+    preserveAspectRatio="none"
+    width="100%"
+    height="100%"
+  >
+
+    <path
+      fill="none"
+      stroke="green"
+      strokeWidth="3"
+      d="M0,35 C190,-100 320,260 500,100"
+    />
+
+    <path
+      fill="none"
+      stroke="green"
+      strokeWidth="3"
+      d="M940,160 C1120,60 1280,260 1440,160"
+    />
+  </svg>
+</Box>
+
+      </Box>
+  )
+}
