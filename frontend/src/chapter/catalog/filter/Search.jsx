@@ -1,7 +1,7 @@
 import { Box, Input, InputGroup, InputRightElement, IconButton } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
 
-export default function Search({ value, onChange }) {
+export default function Search({ value,onChange }) {
   return (
     <Box mb={4}>
       <InputGroup>

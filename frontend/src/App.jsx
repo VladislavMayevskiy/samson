@@ -4,7 +4,7 @@ import Home from "./home";
 import Catalog from "./chapter/catalog/Catalog";
 import SignUp from "./register/sign"
 import LogIn from "./register/logIn";
-
+import LoginAdmin from "./admin/registartion";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
        <Route path="/" element={<SignUp/>}/>
         <Route path="/global" element={<Home />} /> 
         <Route path="/catalog" element={<Catalog/>} />
+        <Route path="/admin" element={<LoginAdmin/>}/>
       </Routes>
     </Router>
   );

@@ -76,6 +76,7 @@ const Header = ({ sort, setSort, selected, setSelected, query, setQuery }) => {
 
           {showSearch && (
             <Input
+            display={{ base: "flex", md: "none" }}
               placeholder="Пошук…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -136,6 +137,7 @@ const Header = ({ sort, setSort, selected, setSelected, query, setQuery }) => {
             icon={<HamburgerIcon />}
             fontSize="22px"
             color="black"
+            visibility={{base:"visible",md:"hidden"}}
           />
         </Flex>
       </Flex>

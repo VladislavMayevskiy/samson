@@ -30,7 +30,7 @@ alt="Logo"
    />
           </HStack>
 
-          <HStack spacing={8} display={{ base: "none", md: "flex" }}>
+          <HStack spacing={8} >
             <Button textColor="black" onClick={() => navigate("/")}>
               Home
               </Button>
