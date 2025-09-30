@@ -1,8 +1,9 @@
-import { Box, Button, Heading, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Stack, Text,HStack} from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import {useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import { useState } from "react";
+import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 
 export default function LogIn() {
   const navigate = useNavigate();
@@ -61,24 +62,28 @@ export default function LogIn() {
         </Heading>
 
         <Stack spacing={4}>
-          <Box>
-            <Text mb={1} fontSize="sm" color="gray.600">
-              Email
-            </Text>
-            <Input type="email" placeholder="example@mail.com"  onChange={(e) => setForm({...form,email:e.target.value})} bgColor="black"/>
-          </Box>
+  <HStack>
+       <FaEnvelope color="green"/>
+   <Text fontSize="sm" fontWeight={600}>
+     Email
+   </Text>
+   </HStack>
+            <Input type="email" placeholder="example@mail.com"  onChange={(e) => setForm({...form,email:e.target.value})} borderRadius={10} borderWidth={2}/>
 
-          <Box>
-            <Text mb={1} fontSize="sm" color="gray.600">
-              Password
-            </Text>
-            <Input type="password" placeholder="Enter password"  onChange={(e) => setForm({...form,password:e.target.value })} bgColor="black" />
-          </Box>
+  <HStack>
+       <FaLock color="green"/>
+   <Text fontSize="sm" fontWeight={600}>
+    Password
+   </Text>
+   </HStack>
+   
+            <Input type="password" placeholder="Enter password"  onChange={(e) => setForm({...form,password:e.target.value })} borderRadius={10} borderWidth={2}/>
 
-          <Button colorScheme="green" size="lg"onClick={submit} >
+
+          <Button bgColor="green.500" color="white" size="lg" onClick={submit} _hover={{ bg: "green.600" ,transform: "scale(1.05)"}} borderRadius={10} borderWidth={2} >
             Log in
           </Button>
-          <Text textColor="black" fontWeight={600}> Don't have?<Button textColor="black" fontSize={18} width={40} onClick={() => navigate("/")}>Sign Up</Button></Text>
+          <Text textColor="black" fontWeight={600}> Don't have?<Button textColor="black" fontSize={18} width={12} onClick={() => navigate("/")} variant="ghost" ml={8} mb={1}>Sign Up</Button></Text>
         </Stack>
       </Box>
     </Box>

@@ -28,7 +28,7 @@ export default function CardGoods({ product, onAddToCart }) {
     >
       {image && (
         <Image
-        src={`http://localhost:5000${image}`}
+        src={`http://localhost:5001${image}`}
           alt={name}
           h={{ base: 200, md: 250 }}
           w="full"

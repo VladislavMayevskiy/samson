@@ -1,8 +1,9 @@
-import { Box, Button, Heading, Input, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Stack, Text,Icon, Container,HStack} from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { registerUser } from "../api/auth";
+import { FaUser, FaLock, FaEnvelope } from "react-icons/fa";
 
 export default function SignUp() {
   const toast = useToast();
@@ -50,6 +51,7 @@ export default function SignUp() {
       display="flex"
       alignItems="center"
       justifyContent="center"
+      maxH="100vh"
     >
       <Box
         bg="white"
@@ -63,32 +65,42 @@ export default function SignUp() {
           Registration
         </Heading>
 
-        <Stack spacing={4}>
-          <Box>
-            <Text mb={1} fontSize="sm" color="gray.600">
-              Name
-            </Text>
-            <Input placeholder="Enter your name" bgColor="black" onChange={(e) => setForm({ ...form, name: e.target.value })}/>
-          </Box>
+        <Stack spacing={4} ml={-1}>
+      <HStack align="center"  >
+  <FaUser color="green"/>
+  <Text fontSize="sm" fontWeight={600}>
+    Full name
+  </Text>
+</HStack>
 
-          <Box>
-            <Text mb={1} fontSize="sm" color="gray.600">
-              Email
-            </Text>
-            <Input type="email" placeholder="example@mail.com"  onChange={(e) =>setForm({ ...form, email: e.target.value })} bgColor="black"/>
-          </Box>
+<Input
+  placeholder="Enter your name"
+  onChange={(e) => setForm({ ...form, name: e.target.value })}
+  borderRadius={10}
+  borderWidth={2}
+/>
+  <HStack>
+      <FaEnvelope color="green"/>
+  <Text fontSize="sm" fontWeight={600}>
+    Email
+  </Text>
+  </HStack>
+            <Input type="email" placeholder="example@mail.com"  onChange={(e) =>setForm({ ...form, email: e.target.value })} borderRadius={10} borderWidth={2}/>
 
-          <Box>
-            <Text mb={1} fontSize="sm" color="gray.600">
-              Password
-            </Text>
-            <Input type="password" placeholder="Enter password" onChange={(e) => setForm({ ...form, password: e.target.value })} bgColor="black" />
-          </Box>
 
-          <Button colorScheme="green" size="lg" onClick={submit}>
+   <HStack>
+      <FaLock color="green"/>
+  <Text fontSize="sm" fontWeight={600}>
+    Password
+  </Text>
+  </HStack>
+            <Input type="password" placeholder="Enter password" onChange={(e) => setForm({ ...form, password: e.target.value })} borderRadius={10} borderWidth={2} />
+
+
+          <Button bgColor="green.500" color="white" size="lg" onClick={submit} _hover={{ bg: "green.600" ,transform: "scale(1.05)"}} borderRadius={10} borderWidth={2}>
             Sign Up
           </Button>
-          <Text textColor="black" fontWeight={600}> Already have account?<Button textColor="black" fontSize={18} width={40} onClick={submit}>Log in</Button></Text>
+          <Text textColor="black" fontWeight={600}> Already have account?<Button textColor="black" fontSize={18} width={12} onClick={() => navigate("/login")} variant="ghost" ml={3} mb={1}>Log in</Button></Text>
         </Stack>
       </Box>
     </Box>

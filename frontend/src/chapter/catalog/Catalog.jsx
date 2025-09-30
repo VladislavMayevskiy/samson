@@ -11,7 +11,7 @@ export default function Catalog() {
   const [products,setProducts] = useState([]);
   const norm = (v) => v?.toString().toLocaleLowerCase("uk").trim() ?? "";
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/list")
+    fetch("http://localhost:5001/api/products/list")
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Error fetching products:", err));

@@ -19,4 +19,6 @@ router.get("/list/:id",ProductById)
 router.delete("/deleteProduct/:id",ProductDelete)
 router.put("/updateProduct/:id",ProductUpdate)
 
+
+
 export default router
