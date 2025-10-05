@@ -4,7 +4,7 @@ export async function getAdminAPI() {
 const token = localStorage.getItem("token")
 if (!token) return null
 try {
-    const res = await axios.get("http://localhost:5001/admin/admin",{
+    const res = await axios.get("http://localhost:5001/admin",{
         headers: {
             Authorization: `Bearer ${token}`
         }

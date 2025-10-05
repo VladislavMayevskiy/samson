@@ -5,6 +5,8 @@ import Catalog from "./chapter/catalog/Catalog";
 import SignUp from "./register/sign"
 import LogIn from "./register/logIn";
 import LoginAdmin from "./admin/registartion";
+import { AdminPage } from "./admin/adminPage";
+import ProtectedRoute from "./admin/protectedRoute";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Route path="/global" element={<Home />} /> 
         <Route path="/catalog" element={<Catalog/>} />
         <Route path="/admin" element={<LoginAdmin/>}/>
+        <Route path="/admin/adminPage" element={<ProtectedRoute> <AdminPage/> </ProtectedRoute>}></Route>
       </Routes>
     </Router>
   );

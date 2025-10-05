@@ -9,7 +9,9 @@ export default function SignUp() {
   const toast = useToast();
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  
   const submit = async () => {
+
     if (!form.name || !form.email || !form.password) {
       toast({
         title: "ALl letter important",
@@ -19,7 +21,23 @@ export default function SignUp() {
       });
       return;
     }
-  
+  if (form.password.length < 8) {
+    toast({
+      title: "Password must be at least 8 characters long",
+      status:"error",
+      duration:3000,
+      isClosable:true
+    })
+  }
+  if (!form.email.includes("@")) {
+    toast({
+      title:"@ , is missing",
+      status:"error",
+      duration:3000,
+      isClosable:true
+    })
+  } 
+
     const data = await registerUser(form);
     console.log(data);
   
