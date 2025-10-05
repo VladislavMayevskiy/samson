@@ -15,7 +15,7 @@ const PORT = 5001
 app.use(cors());
 app.use(express.json());
  
-app.use("/admin",roleRoutes)
+app.use("/",roleRoutes)
 app.use("/api/products", productRoutes);//главарь
 app.use("/api/auth", authRoutes);
 

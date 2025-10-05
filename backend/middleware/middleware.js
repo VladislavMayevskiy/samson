@@ -1,26 +1,12 @@
-import jwt from 'jsonwebtoken'
-
-export const authMiddleware = (req,res,next) => {
-const authHeader = req.headers["authorization"];
-if (!authHeader) return res.status(401).json({ message: "Authorization header missing" });
-
-const token = authHeader.split(" ")[1];
-    if(!token) return res.status(401).json({message:"Enter token"})
-        try {
-    const verifyToken = jwt.verify(token,process.env.JWT_SECRET)
-    req.user = verifyToken
-    next()
-    } catch (err) {
-        return res.status(403).json({message:"Uncorrect token"})
-    }
-}
-
-export const adminMiddleware = (req, res, next) => {
-  if (req.user.role !== "admin") {
-    return res.status(403).json({ message: "Access denied: not an admin" })
+const  authAdminMiddleware = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  if (!authHeader) {
+    return res.status(401).json({ message: "No token" });
   }
-  next()
-}
-
-
-
+  const token = authHeader.split(' ')[1];
+  if (token !== process.env.ADMIN_KEY) {
+    return res.status(403).json({ message: "Invalid token" });
+  }
+  next();
+};
+export default authAdminMiddleware;

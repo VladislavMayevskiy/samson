@@ -1,11 +1,14 @@
-import express from "express"
-import { authMiddleware } from "../middleware/middleware.js"
-import { adminMiddleware } from "../middleware/middleware.js"
-const role = express.Router()
+import express from "express";
+import authAdminMiddleware from "../middleware/middleware.js"
 
-role.get("/global/profile", authMiddleware, (req, res) => {
-  res.json({ message: "Profile", user: req.user });
+const router = express.Router();
+
+router.post("/verify", authAdminMiddleware, (req, res) => {
+  res.json({ message: "Token valid" });
 });
 
-role.get("/admin", authMiddleware, adminMiddleware,(req, res) => {  res.json({ message: "Welcome to admin",user:req.user }); })
-export default role
+router.get("/adminPage", authAdminMiddleware, (req, res) => {
+  res.json({ message: "Welcome, admin!" });
+});
+
+export default router;
