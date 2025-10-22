@@ -118,7 +118,7 @@ export default function SignUp() {
           <Button bgColor="green.500" color="white" size="lg" onClick={submit} _hover={{ bg: "green.600" ,transform: "scale(1.05)"}} borderRadius={10} borderWidth={2}>
             Sign Up
           </Button>
-          <Text textColor="black" fontWeight={600}> Already have account?<Button textColor="black" fontSize={18} width={12} onClick={() => navigate("/login")} variant="ghost" ml={3} mb={1}>Log in</Button></Text>
+          <Text textColor="black" fontWeight={600}> Already have account?<Button textColor="green.400" fontSize={18} width={12} onClick={() => navigate("/login")} variant="ghost" ml={3} mb={1} >Log in</Button></Text>
         </Stack>
       </Box>
     </Box>

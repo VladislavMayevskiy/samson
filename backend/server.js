@@ -1,13 +1,16 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
+
 import cors from "cors";
 import productRoutes from "./routes/routes.js"
 import { fileURLToPath } from "url";
 import path from "path";
-dotenv.config();
+
 import authRoutes from "./routes/auth.route.js"
 import roleRoutes from "./routes/role.route.js"
+import Carter from "./routes/cart.route.js";
 
 
 const app = express();
@@ -18,6 +21,7 @@ app.use(express.json());
 app.use("/",roleRoutes)
 app.use("/api/products", productRoutes);//главарь
 app.use("/api/auth", authRoutes);
+app.use("/api/cart",Carter)
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

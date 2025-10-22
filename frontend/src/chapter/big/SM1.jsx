@@ -11,10 +11,12 @@ import {
   Avatar,
   AvatarGroup,
   Icon,
+  IconButton
 } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import Logo from "../../logo.png"
 import Test from "../../ImagePhone.svg"
+import { FaUserCircle } from "react-icons/fa";
 export default function HeroSection() {
 const navigate = useNavigate() 
   return (
@@ -39,9 +41,15 @@ alt="Logo"
               </Button>
           </HStack>
 
-          <Button bg="green.400" color="white" px={6} _hover={{ bg: "green.600" }}>
-            Download app
-          </Button>
+ <IconButton
+  bg="green.400"
+  color="white"
+  _hover={{ bg: "green.500" }}
+  onClick={() => navigate("/profile")}
+  icon={<FaUserCircle size={20} />}
+  boxSize={12} 
+  borderRadius={11}
+/>
         </Flex>
       </Container>
 
@@ -96,8 +104,7 @@ alt="Logo"
             <Image src={Test} alt="Finpay App" maxH="600px" objectFit="contain" />
           </Box>
         </Flex>
-
- {/*Blur*/}       <Box
+      <Box
   position="absolute"
   bottom="0"
   left="0"

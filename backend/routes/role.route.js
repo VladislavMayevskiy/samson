@@ -1,14 +1,13 @@
 import express from "express";
-import authAdminMiddleware from "../middleware/middleware.js"
+
+import { globalMiddleware } from "../middleware/middleware.js";
+import { profileController } from "../controllers/profile.controller.js"
 
 const router = express.Router();
 
-router.post("/verify", authAdminMiddleware, (req, res) => {
-  res.json({ message: "Token valid" });
-});
 
-router.get("/adminPage", authAdminMiddleware, (req, res) => {
-  res.json({ message: "Welcome, admin!" });
-});
 
+router.get("/user/profile",globalMiddleware,profileController,(req,res) => {
+    res.status(200).json({message:"Welcome to profile"})
+})
 export default router;

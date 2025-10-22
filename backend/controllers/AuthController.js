@@ -9,13 +9,18 @@ export const register = async (req, res) => {
     const password = String(req.body.password ?? "");
     const role = req.body.role || "user";
 
+    const falseAcc = await User.findOne({email});
+    if(falseAcc) {
+      return res.status(400).json({message:"User already exists"});
+    }
+
     if (!name || !email || !password) {
       return res.status(400).json({ message: "name, email, password required" });
     }
 
     const exists = await User.findOne({ email });
     if (exists) {
-      return res.status(400).json({ message: "Користувач з таким email вже існує" });
+      return res.status(400).json({ message: "user with this email already exist" });
     }
 
     const hash = await bcrypt.hash(password, 10);
@@ -37,21 +42,26 @@ export const login = async (req, res) => {
     const password = String(req.body.password ?? "");
 
     if (!email || !password) {
-      return res.status(400).json({ message: "Email і пароль обовʼязкові" });
+      return res.status(400).json({ message: "Email and Password important" });
     }
 
     const user = await User.findOne({ email }); 
-    if (!user) return res.status(400).json({ message: "Користувача не знайдено" });
+    if (!user) return res.status(400).json({ message: "User not found" });
 
-    const ok = await bcrypt.compare(password, user.password);
-    if (!ok) return res.status(400).json({ message: "Невірний пароль" });
+    const decodeding = await bcrypt.compare(password, user.password);
+    if (!decodeding) return res.status(400).json({ message: "Uncorrect password" });
   const token = jwt.sign(
-       {userId:user._id,role:user.role},
+       {id:user._id,role:user.role},
         process.env.JWT_SECRET,
-        {expiresIn:"1h"})
+        {expiresIn:"1y"})
         
-    return res.json({ message: "Вхід успішний", token });
+return res.status(200).json({
+  message: "Login successful",
+  token,
+  user: { id: user._id, name: user.name, email: user.email, role: user.role },
+});
+
   } catch (err) {
-    return res.status(500).json({ message: "Помилка при вході" });
+    return res.status(500).json({ message: "Fail server" });
   }
 };

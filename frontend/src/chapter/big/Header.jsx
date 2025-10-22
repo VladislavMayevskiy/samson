@@ -14,16 +14,14 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import Search from "../catalog/filter/Search";
-import Filtration from "../catalog/filter/Filtration";
 import Logo from "../../logo.png";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { useNavigate, useLocation } from "react-router-dom";
-import { BiSortAlt2 } from "react-icons/bi";
+import { useNavigate} from "react-router-dom";
+import ShopCard from "../../cart/shopCard";
 
-const Header = ({ sort, setSort, selected, setSelected, query, setQuery }) => {
+const Header = ({ query, setQuery }) => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [showSearch, setShowSearch] = useState(false);
 
   return (
@@ -87,50 +85,11 @@ const Header = ({ sort, setSort, selected, setSelected, query, setQuery }) => {
           )}
 
           <Box position="relative">
-            <IconButton
-              aria-label="Cart"
-              icon={<FaShoppingCart />}
-              fontSize="20px"
-              color="black"
-            />
-            <Badge
-              position="absolute"
-              top="-1"
-              right="-1"
-              borderRadius="full"
-              bg="green.400"
-              color="white"
-              fontSize="0.7em"
-              px={2}
-            >
-              3
-            </Badge>
+   <ShopCard/>
+
           </Box>
 
-          {location.pathname === "/catalog" && (
-            <Menu isLazy placement="bottom-end">
-              {({ onClose }) => (
-                <>
-                  <MenuButton
-                    as={IconButton}
-                    aria-label="Sort"
-                    icon={<BiSortAlt2 />}
-                    fontSize="22px"
-                    color="black"
-                  />
-                  <MenuList bgColor="black" borderRadius={10} p={2}>
-                    <Filtration
-                      sort={sort}
-                      setSort={setSort}
-                      selected={selected}
-                      setSelected={setSelected}
-                      onDone={onClose}
-                    />
-                  </MenuList>
-                </>
-              )}
-            </Menu>
-          )}
+
 
           <IconButton
             aria-label="Menu"

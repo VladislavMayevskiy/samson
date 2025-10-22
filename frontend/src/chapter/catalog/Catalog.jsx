@@ -4,7 +4,7 @@ import { Box, SimpleGrid } from "@chakra-ui/react";
 import CardGoods from "../../array/CardGoods";
 import Header from "../big/Header";
 
-export default function Catalog() {
+export default function Catalog({fetchCart}) {
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("default");
   const [selected, setSelected] = useState(null);
@@ -23,15 +23,10 @@ export default function Catalog() {
       if (!q) return products;
       return products.filter((item) => norm(item?.name).includes(q)); 
     } catch (e) {
-      console.error("Помилка при пошуку:", e);
+      console.error("Error on search", e);
       return [];
     }
   }, [query, products]);
-  
-
-  const handleAddToCart = (item) => {
-    console.log("add to cart:", item.id);
-  };
 
   return (
     <Box p={4} bgColor="gray.100" minH="100vh">
@@ -53,11 +48,11 @@ export default function Catalog() {
           ml={120}
           mt={48}
         >
-          {products.map((item) => (
+          {filtered.map((item) => (
             <CardGoods
               key={item._id}
-              product={item}
-              onAddToCart={handleAddToCart}
+              product={item} 
+              cartUpdate={fetchCart}
             />
           ))}
         </SimpleGrid>
